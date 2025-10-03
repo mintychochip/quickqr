@@ -1,7 +1,13 @@
 <script setup lang="ts">
-  import {Color} from "@/container/color.ts";
+  import {QuickQRCodeStyling} from "@/container/qrcode/qrcode.ts";
+  import {DotOptions} from "@/container/qrcode/dot_options.ts";
+  import {QuickQRCodeProperties} from "@/container/qrcode/qrcode_property.ts";
+  import {BackgroundOptions} from "@/container/qrcode/background_options.ts";
+  let styling = QuickQRCodeStyling.builder()
+  .setValue(QuickQRCodeProperties.DOT_OPTIONS,DotOptions.builder().roundSize(false).build())
+  .build();
+  console.log(styling)
 
-  let color: Color = new Color("#ffffff");
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 import type {Blob} from "buffer";
 import {UUID} from '../container/uuid'
 
-export interface User {
+export interface UserRecord {
   readonly userId: UUID
   password: string
   email: string
@@ -9,7 +9,7 @@ export interface User {
   admin: boolean
 }
 
-export interface QRCode {
+export interface QRCodeRecord {
   readonly qrCodeId: UUID
   data: string
   readonly createdAt: EpochTimeStamp
@@ -17,7 +17,7 @@ export interface QRCode {
   userId: UUID
 }
 
-export interface Scan {
+export interface ScanRecord {
   readonly scanId: number
   readonly createdAt: EpochTimeStamp
   readonly qrCodeId: UUID
