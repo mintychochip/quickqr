@@ -1,8 +1,11 @@
 import type {QRCodeProperty} from "@/container/qrcode/qrcode_property.ts";
 import {QuickQRCodeProperties} from "@/container/qrcode/qrcode_property.ts";
-import {DotOptions} from "@/container/qrcode/dot_options.ts";
-import {BackgroundOptions} from "@/container/qrcode/background_options.ts";
-import {CornerOptions} from "@/container/qrcode/corner_square_options.ts";
+import {
+  BackgroundOptions,
+  CornerOptions,
+  DotOptions,
+  QROptions
+} from "@/container/qrcode/options.ts";
 
 export const ImageType = {
   CANVAS: 'canvas',
@@ -23,12 +26,17 @@ export class QuickQRCodeStyling {
   private readonly styling: Map<string, unknown> = new Map();
 
   private constructor() {
-    this.setValue(QuickQRCodeProperties.)
+    this.setValue(QuickQRCodeProperties.WIDTH,300)
+    this.setValue(QuickQRCodeProperties.HEIGHT, 300)
+    this.setValue(QuickQRCodeProperties.IMAGE_TYPE,ImageType.CANVAS)
+    this.setValue(QuickQRCodeProperties.SHAPE, ImageShape.SQUARE)
+    this.setValue(QuickQRCodeProperties.DATA,null)
+    this.setValue(QuickQRCodeProperties.IMAGE,null)
+    this.setValue(QuickQRCodeProperties.QR_OPTIONS,QROptions.create())
     this.setValue(QuickQRCodeProperties.DOT_OPTIONS,DotOptions.create())
     this.setValue(QuickQRCodeProperties.BACKGROUND_OPTIONS,BackgroundOptions.create())
     this.setValue(QuickQRCodeProperties.CORNER_SQUARE_OPTIONS, CornerOptions.create())
     this.setValue(QuickQRCodeProperties.CORNER_DOT_OPTIONS,CornerOptions.create())
-    this.setValue(QuickQRCodeProperties)
   }
   getValue<T>(property: QRCodeProperty<T>): T | null {
     if (this.styling.has(property.propertyName)) {

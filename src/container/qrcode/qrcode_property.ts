@@ -1,8 +1,11 @@
-import type {BackgroundOptions} from "@/container/qrcode/background_options.ts";
-import type {DotOptions} from "@/container/qrcode/dot_options.ts";
-import type {CornerOptions} from "@/container/qrcode/corner_square_options.ts";
 import type {ImageShape, ImageType} from "@/container/qrcode/qrcode.ts";
-import type {QROptions} from "@/container/qrcode/qr_options.ts";
+import {
+  BackgroundOptions,
+  CornerOptions,
+  DotOptions,
+  ImageOptions,
+  type QROptions
+} from "@/container/qrcode/options.ts";
 
 
 const CornerDotStyle = {
@@ -74,9 +77,9 @@ export const QuickQRCodeProperties = {
   IMAGE: QuickQRCodePropertyRegistry.property<string | null>("image"),
   MARGIN: QuickQRCodePropertyRegistry.property<number>("margin"),
   QR_OPTIONS: QuickQRCodePropertyRegistry.property<QROptions>("qrOptions"),
-  IMAGE_OPTIONS: QuickQRCodePropertyRegistry.property()
-  DOT_OPTIONS: QuickQRCodePropertyRegistry.property<DotOptions>("dotOptions"),
+  IMAGE_OPTIONS: QuickQRCodePropertyRegistry.property<ImageOptions>("imageOptions"),
+  DOT_OPTIONS: QuickQRCodePropertyRegistry.property<DotOptions>("dotsOptions"),
   BACKGROUND_OPTIONS: QuickQRCodePropertyRegistry.property<BackgroundOptions>("backgroundOptions"),
-  CORNER_SQUARE_OPTIONS: QuickQRCodePropertyRegistry.property<CornerOptions>("cornerSquareOptions"),
-  CORNER_DOT_OPTIONS: QuickQRCodePropertyRegistry.property<CornerOptions>("cornerDotOptions"),
+  CORNER_SQUARE_OPTIONS: QuickQRCodePropertyRegistry.property<CornerOptions>("cornersSquareOptions"),
+  CORNER_DOT_OPTIONS: QuickQRCodePropertyRegistry.property<CornerOptions>("cornersDotOptions"),
 } as const;
