@@ -45,7 +45,7 @@ export class DotOptions {
   }
 }
 
-export class DotOptionsBuilder {
+class DotOptionsBuilder {
   private readonly options: DotOptions = DotOptions.create();
 
   color(color: Color | null): this {
@@ -89,7 +89,7 @@ export class QROptions {
   }
 }
 
-export class QROptionsBuilder {
+class QROptionsBuilder {
   private readonly options: QROptions = QROptions.create();
 
   typeNumber(typeNumber: number): this {
@@ -130,7 +130,7 @@ export class ImageOptions {
   }
 }
 
-export class ImageOptionsBuilder {
+class ImageOptionsBuilder {
   private readonly options: ImageOptions = ImageOptions.create();
 
   hideBackgroundDots(hide: boolean): this {
@@ -179,7 +179,7 @@ export class CornerOptions {
   }
 }
 
-export class CornerOptionsBuilder {
+class CornerOptionsBuilder {
   private readonly options: CornerOptions = CornerOptions.create();
 
   color(color: Color | null): this {
@@ -217,7 +217,7 @@ export class BackgroundOptions {
   }
 }
 
-export class BackgroundOptionsBuilder {
+class BackgroundOptionsBuilder {
   private readonly options: BackgroundOptions = BackgroundOptions.create();
 
   color(color: Color): this {

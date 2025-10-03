@@ -1,10 +1,10 @@
 <script setup lang="ts">
-  import {QuickQRCodeStyling} from "@/container/qrcode/qrcode.ts";
-  import {QuickQRCodeProperties} from "@/container/qrcode/qrcode_property.ts";
+import {QuickQRCodeProperties, QuickQRCodeStyling} from "@/container/qrcode/qrcode.ts";
   import {DotOptions, QROptions} from "@/container/qrcode/options.ts";
   let styling = QuickQRCodeStyling.builder()
   .setValue(QuickQRCodeProperties.DOT_OPTIONS,DotOptions.builder().roundSize(false).build())
   .setValue(QuickQRCodeProperties.QR_OPTIONS,QROptions.builder().build())
+  .setValue(QuickQRCodeProperties.WIDTH,300)
   .setValue(QuickQRCodeProperties.IMAGE,"https://bus.com")
   .build();
   console.log(styling)

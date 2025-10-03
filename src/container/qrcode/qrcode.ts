@@ -1,9 +1,8 @@
 import type {QRCodeProperty} from "@/container/qrcode/qrcode_property.ts";
-import {QuickQRCodeProperties} from "@/container/qrcode/qrcode_property.ts";
 import {
   BackgroundOptions,
   CornerOptions,
-  DotOptions,
+  DotOptions, ImageOptions,
   QROptions
 } from "@/container/qrcode/options.ts";
 
@@ -17,27 +16,83 @@ export const ImageShape = {
   CIRCLE: 'circle'
 } as const;
 
-export type ImageType = typeof ImageType[keyof typeof ImageType];
+export const CornerDotStyle = {
+  NONE: "none",
+  DOT: "dot",
+  SQUARE: "square",
+} as const;
 
+// Types exactly matching const names
+export type CornerDotStyle = typeof CornerDotStyle[keyof typeof CornerDotStyle];
+export type ImageType = typeof ImageType[keyof typeof ImageType];
 export type ImageShape = typeof ImageShape[keyof typeof ImageShape];
+
+export class QRCodeProperty<T> {
+  readonly propertyName: string;
+
+  private constructor(propertyName: string) {
+    this.propertyName = propertyName;
+  }
+}
+
+class QuickQRCodePropertyRegistry {
+  private constructor() {
+    throw new Error("do not instantiate this class");
+  }
+
+  private static registry: Map<string, QRCodeProperty<object>> = new Map();
+
+  static register(propertyName: string): void {
+    this.registry.set(propertyName, {propertyName: propertyName});
+  }
+
+  static property<T>(propertyName: string): QRCodeProperty<T> {
+    const property = this.registry.get(propertyName);
+    if (!property) {
+      throw new Error(`Property ${propertyName} does not exist`);
+    }
+    return property as QRCodeProperty<T>;
+  }
+
+  static {
+    this.register("width");
+    this.register("height");
+    this.register("type");
+    this.register("shape");
+    this.register("data");
+    this.register("image");
+    this.register("margin");
+    this.register("qrOptions");
+    this.register("imageOptions");
+    this.register("dotsOptions");
+    this.register("backgroundOptions");
+    this.register("cornersSquareOptions");
+    this.register("cornersDotOptions");
+    this.register("nodeCanvas");
+    this.register("jsDom");
+  }
+}
+
+export const QuickQRCodeProperties = {
+  WIDTH: QuickQRCodePropertyRegistry.property<number>("width"),
+  HEIGHT: QuickQRCodePropertyRegistry.property<number>("height"),
+  IMAGE_TYPE: QuickQRCodePropertyRegistry.property<ImageType>("type"),
+  SHAPE: QuickQRCodePropertyRegistry.property<ImageShape>("shape"),
+  DATA: QuickQRCodePropertyRegistry.property<string | null>("data"),
+  IMAGE: QuickQRCodePropertyRegistry.property<string | null>("image"),
+  MARGIN: QuickQRCodePropertyRegistry.property<number>("margin"),
+  QR_OPTIONS: QuickQRCodePropertyRegistry.property<QROptions>("qrOptions"),
+  IMAGE_OPTIONS: QuickQRCodePropertyRegistry.property<ImageOptions>("imageOptions"),
+  DOT_OPTIONS: QuickQRCodePropertyRegistry.property<DotOptions>("dotsOptions"),
+  BACKGROUND_OPTIONS: QuickQRCodePropertyRegistry.property<BackgroundOptions>("backgroundOptions"),
+  CORNER_SQUARE_OPTIONS: QuickQRCodePropertyRegistry.property<CornerOptions>("cornersSquareOptions"),
+  CORNER_DOT_OPTIONS: QuickQRCodePropertyRegistry.property<CornerOptions>("cornersDotOptions"),
+} as const;
 
 export class QuickQRCodeStyling {
 
   private readonly styling: Map<string, unknown> = new Map();
 
-  private constructor() {
-    this.setValue(QuickQRCodeProperties.WIDTH,300)
-    this.setValue(QuickQRCodeProperties.HEIGHT, 300)
-    this.setValue(QuickQRCodeProperties.IMAGE_TYPE,ImageType.CANVAS)
-    this.setValue(QuickQRCodeProperties.SHAPE, ImageShape.SQUARE)
-    this.setValue(QuickQRCodeProperties.DATA,null)
-    this.setValue(QuickQRCodeProperties.IMAGE,null)
-    this.setValue(QuickQRCodeProperties.QR_OPTIONS,QROptions.create())
-    this.setValue(QuickQRCodeProperties.DOT_OPTIONS,DotOptions.create())
-    this.setValue(QuickQRCodeProperties.BACKGROUND_OPTIONS,BackgroundOptions.create())
-    this.setValue(QuickQRCodeProperties.CORNER_SQUARE_OPTIONS, CornerOptions.create())
-    this.setValue(QuickQRCodeProperties.CORNER_DOT_OPTIONS,CornerOptions.create())
-  }
   getValue<T>(property: QRCodeProperty<T>): T | null {
     if (this.styling.has(property.propertyName)) {
       return this.styling.get(property.propertyName) as T;
