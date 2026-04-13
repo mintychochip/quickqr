@@ -28,3 +28,7 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+# Agent memory
+memory/
+proactive-strikes.json
