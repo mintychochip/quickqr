@@ -94,15 +94,15 @@ const copyToClipboard = async () => {
     if (canvas) {
       canvas.toBlob(async (blob) => {
         if (blob) {
-          await navigator.clipboard.write([
-            new ClipboardItem({ 'image/png': blob })
-          ])
+          const item = new ClipboardItem(new Map([['image/png', blob]]))
+          await navigator.clipboard.write([item])
           alert('QR code copied to clipboard!')
         }
       })
     }
   } catch (err) {
     console.error('Failed to copy:', err)
+    alert('Failed to copy to clipboard. Try downloading instead.')
   }
 }
 
