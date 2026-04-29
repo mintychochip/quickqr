@@ -1,4 +1,8 @@
-import type {User, UUID} from './models'
+import type {UserRecord} from './models';
+import type {UUID} from '../container/uuid';
+
+// Alias for compatibility
+type User = UserRecord;
 
 export interface UserRepository {
     create(user: User): Promise<boolean>;

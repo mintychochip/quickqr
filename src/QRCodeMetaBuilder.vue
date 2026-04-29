@@ -95,7 +95,8 @@ const copyToClipboard = async () => {
     if (canvas) {
       canvas.toBlob(async (blob) => {
         if (blob) {
-          const item = new ClipboardItem(new Map([['image/png', blob]]))
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const item = new ClipboardItem({ 'image/png': blob } as any)
           await navigator.clipboard.write([item])
           alert('QR code copied to clipboard!')
         }

@@ -1,4 +1,4 @@
-import type {Blob} from "buffer";
+// Using global Blob type for browser environment
 import {UUID} from '../container/uuid'
 
 export interface UserRecord {

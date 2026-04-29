@@ -1,4 +1,3 @@
-import type {QRCodeProperty} from "@/container/qrcode/qrcode_property.ts";
 import {
   BackgroundOptions,
   CornerOptions,
@@ -28,7 +27,7 @@ export type ImageType = typeof ImageType[keyof typeof ImageType];
 export type ImageShape = typeof ImageShape[keyof typeof ImageShape];
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- generic reserved for future property types
-export class QRCodeProperty<T> {
+export class QRCodeProperty<_T> {
   readonly propertyName: string;
 
   private constructor(propertyName: string) {

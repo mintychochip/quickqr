@@ -55,7 +55,7 @@ describe('QuickQRCodeStyling', () => {
       .build()
 
     styling.setValue(QuickQRCodeProperties.QR_OPTIONS, qrOptions)
-    const retrieved = styling.getValue(QuickQRCodeProperties.QR_OPTIONS)
+    const retrieved = styling.getValue(QuickQRCodeProperties.QR_OPTIONS) as typeof qrOptions
 
     expect(retrieved).toEqual(qrOptions)
     expect(retrieved?.mode).toBe(QRMode.BYTE)
@@ -69,7 +69,7 @@ describe('QuickQRCodeStyling', () => {
       .build()
 
     styling.setValue(QuickQRCodeProperties.IMAGE_OPTIONS, imageOptions)
-    const retrieved = styling.getValue(QuickQRCodeProperties.IMAGE_OPTIONS)
+    const retrieved = styling.getValue(QuickQRCodeProperties.IMAGE_OPTIONS) as typeof imageOptions
 
     expect(retrieved?.imageSize).toBe(0.5)
     expect(retrieved?.margin).toBe(10)
