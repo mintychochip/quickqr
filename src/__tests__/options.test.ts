@@ -182,6 +182,7 @@ describe('BackgroundOptions', () => {
   })
 
   it('builds with gradient via builder', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- test mock, intentionally flexible
     const mockGradient = { type: 'linear', stops: [] } as any
     const options = BackgroundOptions.builder().gradient(mockGradient).build()
     expect(options.gradient).toEqual(mockGradient)

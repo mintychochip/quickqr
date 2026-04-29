@@ -42,6 +42,7 @@ const renderQRCode = () => {
   // Clear previous QR code
   canvasRef.value.innerHTML = ''
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- qr-code-styling types are complex, needs comprehensive refactor
   const options: any = {
     width: qrWidth.value,
     height: qrHeight.value,

@@ -27,6 +27,7 @@ export type CornerDotStyle = typeof CornerDotStyle[keyof typeof CornerDotStyle];
 export type ImageType = typeof ImageType[keyof typeof ImageType];
 export type ImageShape = typeof ImageShape[keyof typeof ImageShape];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- generic reserved for future property types
 export class QRCodeProperty<T> {
   readonly propertyName: string;
 
